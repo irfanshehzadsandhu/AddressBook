@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchUsers } from "./actions/actions";
+import { fetchUsers } from "./actions/usersAction";
 import User from "./components/User.js";
 class App extends React.Component {
   componentDidMount() {
@@ -13,10 +13,14 @@ class App extends React.Component {
     }
 
     if (loading) {
-      return <div>Loading...</div>;
+      return (
+        <div style={{ marginTop: 300, marginLeft: 700 }}>
+          <img src="../assets/images/tenor.gif" />
+        </div>
+      );
     }
     return (
-      <table>
+      <table className="table">
         <thead>
           <tr>
             <th></th>
@@ -36,9 +40,9 @@ class App extends React.Component {
 }
 function mapStateToProps(state) {
   return {
-    usersList: state.userReducer.usersList,
-    loading: state.userReducer.loading,
-    error: state.userReducer.error,
+    usersList: state.users.usersList,
+    loading: state.users.loading,
+    error: state.users.error,
   };
 }
 export default connect(mapStateToProps)(App);

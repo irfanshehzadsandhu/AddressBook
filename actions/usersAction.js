@@ -19,7 +19,7 @@ export const fetchingUsersFailure = (error) => ({
 export function fetchUsers() {
   return (dispatch) => {
     dispatch(fetchingUsersBegin());
-    return fetch("https://randomuser.me/api/")
+    return fetch("https://randomuser.me/api/?page=1&results=10")
       .then((res) => res.json())
       .then((json) => {
         dispatch(fetchedUsersSuccessfully(json.results));

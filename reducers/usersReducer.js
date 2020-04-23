@@ -1,9 +1,8 @@
-import { combineReducers } from "redux";
 import {
   FETCHING_USERS_BEGIN,
   FETCHED_USERS_SUCCESSFULLY,
   FETCHING_USERS_FAILURE,
-} from "../actions/actions";
+} from "../actions/usersAction";
 
 const initialState = {
   usersList: [],
@@ -34,7 +33,5 @@ function userReducer(state = initialState, action) {
       return state;
   }
 }
-const AddressBook = combineReducers({
-  userReducer,
-});
-export default AddressBook;
+
+export default userReducer;
