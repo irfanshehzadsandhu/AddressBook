@@ -7,7 +7,14 @@ class App extends React.Component {
     this.props.dispatch(fetchUsers());
   }
   render() {
-    const { usersList } = this.props;
+    const { error, loading, usersList } = this.props;
+    if (error) {
+      return <div>Error! {error.message}</div>;
+    }
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
     return (
       <table>
         <thead>
@@ -27,9 +34,11 @@ class App extends React.Component {
     );
   }
 }
-function select(state) {
+function mapStateToProps(state) {
   return {
     usersList: state.userReducer.usersList,
+    loading: state.userReducer.loading,
+    error: state.userReducer.error,
   };
 }
-export default connect(select)(App);
+export default connect(mapStateToProps)(App);
