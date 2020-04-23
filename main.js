@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
-import { userList } from "./actions/actions";
+import thunk from "redux-thunk";
 import App from "./App.jsx";
 import AddressBook from "./reducers/reducers";
-const store = createStore(AddressBook);
+const store = createStore(AddressBook, applyMiddleware(thunk));
 const rootElement = document.getElementById("app");
-store.dispatch(userList());
+
 ReactDOM.render(
   <Provider store={store}>
     <App />

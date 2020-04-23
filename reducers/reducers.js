@@ -1,15 +1,40 @@
 import { combineReducers } from "redux";
-import { USER_LIST } from "../actions/actions";
+import {
+  FETCHING_USERS_BEGIN,
+  FETCHED_USERS_SUCCESSFULLY,
+  FETCHING_USERS_FAILURE,
+} from "../actions/actions";
 
-function users(state = [], action) {
+const initialState = {
+  usersList: [],
+  loading: false,
+  error: null,
+};
+function userReducer(state = initialState, action) {
   switch (action.type) {
-    case USER_LIST:
-      return { state, list: action.list };
+    case FETCHING_USERS_BEGIN:
+      return {
+        usersList: [],
+        loading: true,
+        error: null,
+      };
+    case FETCHED_USERS_SUCCESSFULLY:
+      return {
+        usersList: action.payload.users,
+        loading: false,
+        error: null,
+      };
+    case FETCHING_USERS_FAILURE:
+      return {
+        usersList: [],
+        loading: false,
+        error: action.payload.error,
+      };
     default:
       return state;
   }
 }
 const AddressBook = combineReducers({
-  users,
+  userReducer,
 });
 export default AddressBook;

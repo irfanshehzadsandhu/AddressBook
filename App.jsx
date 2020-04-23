@@ -1,21 +1,25 @@
 import React from "react";
 import { connect } from "react-redux";
-
+import { fetchUsers } from "./actions/actions";
 import User from "./components/User.js";
 class App extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(fetchUsers());
+  }
   render() {
-    const { list } = this.props;
-
+    const { usersList } = this.props;
+    console.log("^^^^^^^^^^^^^^^^^^^^^^", usersList);
     return (
       <table>
         <thead>
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
+            <th>Email</th>
           </tr>
         </thead>
         <tbody>
-          {list.map((user, i) => (
+          {usersList.map((user, i) => (
             <User key={i} user={user} />
           ))}
         </tbody>
@@ -25,7 +29,7 @@ class App extends React.Component {
 }
 function select(state) {
   return {
-    list: state.users.list, //why state.users ?
+    usersList: state.userReducer.usersList,
   };
 }
 export default connect(select)(App);
