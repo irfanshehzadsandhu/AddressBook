@@ -8,11 +8,11 @@ class App extends React.Component {
   }
   render() {
     const { usersList } = this.props;
-    console.log("^^^^^^^^^^^^^^^^^^^^^^", usersList);
     return (
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
