@@ -13,18 +13,19 @@ function userReducer(state = initialState, action) {
   switch (action.type) {
     case FETCHING_USERS_BEGIN:
       return {
-        usersList: [],
+        ...state,
         loading: true,
         error: null,
       };
     case FETCHED_USERS_SUCCESSFULLY:
       return {
-        usersList: action.payload.users,
+        ...state,
         loading: false,
-        error: null,
+        usersList: state.usersList.concat(action.payload.users),
       };
     case FETCHING_USERS_FAILURE:
       return {
+        ...state,
         usersList: [],
         loading: false,
         error: action.payload.error,
