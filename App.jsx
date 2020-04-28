@@ -1,7 +1,9 @@
+import $ from "jquery";
 import React from "react";
 import { connect } from "react-redux";
 import { fetchUsers, fetchingUsersBegin } from "./actions/usersAction";
 import User from "./components/User.js";
+import Modal from "./components/Modal.js";
 
 class App extends React.Component {
   constructor() {
@@ -21,6 +23,18 @@ class App extends React.Component {
   setPage() {
     return (this.page = this.page + 1);
   }
+
+  openModel(e) {
+    let parentNode = e.target.parentNode.parentNode;
+    $("#street-number").html(parentNode.getAttribute("data-street-number"));
+    $("#street-name").html(parentNode.getAttribute("data-street-name"));
+    $("#city").html(parentNode.getAttribute("data-city"));
+    $("#state").html(parentNode.getAttribute("data-state"));
+    $("#country").html(parentNode.getAttribute("data-country"));
+    $("#postcode").html(parentNode.getAttribute("data-postcode"));
+    $("#userDetailsModal").modal("show");
+  }
+
   componentDidMount() {
     this.props.dispatch(fetchingUsersBegin());
     this.props.dispatch(fetchUsers(this.getPage(), this.getOffset()));
@@ -49,7 +63,6 @@ class App extends React.Component {
     if (windowBottom >= docHeight) {
       const { loading, dispatch } = this.props;
       if (loading == false) {
-        console.log(loading);
         dispatch(fetchUsers(this.setPage(), this.getOffset()));
       }
     } else {
@@ -72,21 +85,27 @@ class App extends React.Component {
       );
     }
     return (
-      <table className="table">
-        <thead>
-          <tr>
-            <th></th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {usersList.map((user, index) => {
-            return <User key={index} user={user} />;
-          })}
-        </tbody>
-      </table>
+      <div>
+        <Modal />
+        <table className="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>View</th>
+            </tr>
+          </thead>
+          <tbody>
+            {usersList.map((user, index) => {
+              return (
+                <User key={index} user={user} openModel={this.openModel} />
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
