@@ -16,11 +16,16 @@ export const fetchingUsersFailure = (error) => ({
   payload: { error },
 });
 
-export function fetchUsers(page, offset) {
+export function fetchUsers(page, offset, nationality) {
   return (dispatch) => {
     console.log(page);
     return fetch(
-      "https://randomuser.me/api/?page=" + page + "&results=" + offset
+      "https://randomuser.me/api/?nat=" +
+        nationality +
+        "&&page=" +
+        page +
+        "&results=" +
+        offset
     )
       .then((res) => res.json())
       .then((json) => {

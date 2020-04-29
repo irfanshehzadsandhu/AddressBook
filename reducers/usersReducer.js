@@ -8,6 +8,7 @@ const initialState = {
   usersList: [],
   loading: false,
   error: null,
+  nationality: "us",
 };
 function userReducer(state = initialState, action) {
   switch (action.type) {

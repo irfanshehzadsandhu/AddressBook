@@ -37,7 +37,9 @@ class App extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(fetchingUsersBegin());
-    this.props.dispatch(fetchUsers(this.getPage(), this.getOffset()));
+    this.props.dispatch(
+      fetchUsers(this.getPage(), this.getOffset(), this.props.nationality)
+    );
     window.addEventListener("scroll", this.handleScroll);
   }
 
@@ -63,7 +65,9 @@ class App extends React.Component {
     if (windowBottom >= docHeight) {
       const { loading, dispatch } = this.props;
       if (loading == false) {
-        dispatch(fetchUsers(this.setPage(), this.getOffset()));
+        dispatch(
+          fetchUsers(this.setPage(), this.getOffset(), this.props.nationality)
+        );
       }
     } else {
       console.log("Reaching bottom");
@@ -114,6 +118,7 @@ function mapStateToProps(state) {
     usersList: state.users.usersList,
     loading: state.users.loading,
     error: state.users.error,
+    nationality: state.users.nationality,
   };
 }
 export default connect(mapStateToProps)(App);
