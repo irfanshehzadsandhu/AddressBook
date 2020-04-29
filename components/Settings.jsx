@@ -1,12 +1,58 @@
 import React from "react";
+import { connect } from "react-redux";
+import { setNationality } from "../actions/usersAction";
 
-export default class Settings extends React.Component {
-  //CH, ES, FR, GB
+class Settings extends React.Component {
+  constructor() {
+    super();
+    this.configureNationality = this.configureNationality.bind(this);
+  }
+
+  configureNationality(e) {
+    this.props.dispatch(
+      setNationality(e.target.getAttribute("data-nationality"))
+    );
+  }
   render() {
     return (
-      <div>
-        <h2>Settings Page</h2>
+      <div className="btn-group" role="group" aria-label="Basic example">
+        <button
+          type="button"
+          className={
+            this.props.nationality == "us" ? "btn btn-primary" : "btn btn-light"
+          }
+          data-nationality="us"
+          onClick={this.configureNationality}
+        >
+          United States
+        </button>
+        <button
+          type="button"
+          className={
+            this.props.nationality == "ch" ? "btn btn-primary" : "btn btn-light"
+          }
+          data-nationality="ch"
+          onClick={this.configureNationality}
+        >
+          Switzerland
+        </button>
+        <button
+          type="button"
+          className={
+            this.props.nationality == "fr" ? "btn btn-primary" : "btn btn-light"
+          }
+          data-nationality="fr"
+          onClick={this.configureNationality}
+        >
+          FRANCE
+        </button>
       </div>
     );
   }
 }
+function mapStateToProps(state) {
+  return {
+    nationality: state.users.nationality,
+  };
+}
+export default connect(mapStateToProps)(Settings);

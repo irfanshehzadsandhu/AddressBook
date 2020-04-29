@@ -2,6 +2,7 @@ import {
   FETCHING_USERS_BEGIN,
   FETCHED_USERS_SUCCESSFULLY,
   FETCHING_USERS_FAILURE,
+  SET_NATIONALITY,
 } from "../actions/usersAction";
 
 const initialState = {
@@ -30,6 +31,12 @@ function userReducer(state = initialState, action) {
         usersList: [],
         loading: false,
         error: action.payload.error,
+      };
+    case SET_NATIONALITY:
+      return {
+        ...state,
+        usersList: [],
+        nationality: action.payload.nationality,
       };
     default:
       return state;

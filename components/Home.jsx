@@ -5,7 +5,7 @@ import { fetchUsers, fetchingUsersBegin } from "../actions/usersAction";
 import User from "./User.jsx";
 import Modal from "./Modal.jsx";
 
-class App extends React.Component {
+class Home extends React.Component {
   constructor() {
     super();
     this.page = 1;
@@ -121,4 +121,4 @@ function mapStateToProps(state) {
     nationality: state.users.nationality,
   };
 }
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps)(Home);

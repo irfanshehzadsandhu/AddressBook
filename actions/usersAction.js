@@ -1,6 +1,7 @@
 export const FETCHING_USERS_BEGIN = "FETCHING_USERS_BEGIN";
 export const FETCHED_USERS_SUCCESSFULLY = "FETCHED_USERS_SUCCESSFULLY";
 export const FETCHING_USERS_FAILURE = "FETCHING_USERS_FAILURE";
+export const SET_NATIONALITY = "SET_NATIONALITY";
 
 export const fetchingUsersBegin = () => ({
   type: FETCHING_USERS_BEGIN,
@@ -14,6 +15,11 @@ export const fetchedUsersSuccessfully = (users) => ({
 export const fetchingUsersFailure = (error) => ({
   type: FETCHING_USERS_FAILURE,
   payload: { error },
+});
+
+export const setNationality = (nationality) => ({
+  type: SET_NATIONALITY,
+  payload: { nationality },
 });
 
 export function fetchUsers(page, offset, nationality) {
