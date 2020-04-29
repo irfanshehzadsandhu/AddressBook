@@ -1,9 +1,9 @@
 import $ from "jquery";
 import React from "react";
 import { connect } from "react-redux";
-import { fetchUsers, fetchingUsersBegin } from "./actions/usersAction";
-import User from "./components/User.js";
-import Modal from "./components/Modal.js";
+import { fetchUsers, fetchingUsersBegin } from "../actions/usersAction";
+import User from "./User.jsx";
+import Modal from "./Modal.jsx";
 
 class App extends React.Component {
   constructor() {
