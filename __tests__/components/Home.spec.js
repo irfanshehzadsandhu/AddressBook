@@ -10,19 +10,11 @@ const mockStore = configureStore([]);
 describe("My Connected React-Redux Component", () => {
   let store;
   let component;
-  const initialState = {
-    users: {
-      usersList: [],
-      loading: false,
-      error: null,
-      nationality: "us",
-    },
-  };
   beforeEach(() => {
     store = mockStore({
-      myState: initialState,
+      users: { usersList: [], loading: false, error: null, nationality: "us" },
     });
-
+    store.dispatch = jest.fn();
     component = renderer.create(
       <Provider store={store}>
         <Home />
@@ -30,7 +22,7 @@ describe("My Connected React-Redux Component", () => {
     );
   });
 
-  it("should render with given state from Redux store", () => {});
-
-  it("should dispatch an action on mount", () => {});
+  it("should render with given state from Redux store", () => {
+    expect(component.toJSON()).toMatchSnapshot();
+  });
 });
