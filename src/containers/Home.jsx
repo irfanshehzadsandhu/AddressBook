@@ -1,9 +1,9 @@
 import $ from "jquery";
 import React from "react";
 import { connect } from "react-redux";
-import { fetchUsers, fetchingUsersBegin } from "../actions/usersAction";
-import User from "./User.jsx";
-import Modal from "./Modal.jsx";
+import { fetchUsers, fetchingUsersBegin } from "../redux/actions/usersAction";
+import User from "../components/User.jsx";
+import Modal from "../components/Modal.jsx";
 
 class Home extends React.Component {
   constructor() {

@@ -1,8 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Navbar from "./Navbar.jsx";
-import Home from "./Home.jsx";
-import Settings from "./Settings.jsx";
+import Navbar from "./components/common/layout/Navbar.jsx";
+import Home from "./containers/Home.jsx";
+import Settings from "./containers/Settings.jsx";
 export default class App extends React.Component {
   render() {
     return (
