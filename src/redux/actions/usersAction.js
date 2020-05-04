@@ -1,3 +1,4 @@
+import { USERS_LIBRARY_URL } from "react-native-dotenv";
 export const FETCHING_USERS_BEGIN = "FETCHING_USERS_BEGIN";
 export const FETCHED_USERS_SUCCESSFULLY = "FETCHED_USERS_SUCCESSFULLY";
 export const FETCHING_USERS_FAILURE = "FETCHING_USERS_FAILURE";
@@ -36,9 +37,10 @@ export const hideModal = () => ({
 
 export function fetchUsers(page, offset, nationality) {
   return (dispatch) => {
-    console.log(page);
+    console.log(USERS_LIBRARY_URL);
     return fetch(
-      "https://randomuser.me/api/?nat=" +
+      USERS_LIBRARY_URL +
+        "/?nat=" +
         nationality +
         "&&page=" +
         page +
