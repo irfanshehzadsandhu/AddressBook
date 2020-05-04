@@ -9,9 +9,7 @@ class Settings extends React.Component {
   }
 
   configureNationality(e) {
-    this.props.dispatch(
-      setNationality(e.target.getAttribute("data-nationality"))
-    );
+    this.props.setNationality(e.target.getAttribute("data-nationality"));
   }
   render() {
     return (
@@ -50,9 +48,12 @@ class Settings extends React.Component {
     );
   }
 }
+const mapDispatchToProps = {
+  setNationality,
+};
 function mapStateToProps(state) {
   return {
     nationality: state.users.nationality,
   };
 }
-export default connect(mapStateToProps)(Settings);
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);

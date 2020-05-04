@@ -19,7 +19,7 @@ export default class User extends React.Component {
             data-state={this.props.user.location.state}
             data-country={this.props.user.location.country}
             data-postcode={this.props.user.location.postcode}
-            onClick={this.props.openModel}
+            onClick={this.props.openModal}
           >
             <svg
               className="bi bi-eye-fill"

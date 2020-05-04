@@ -3,6 +3,8 @@ import {
   FETCHED_USERS_SUCCESSFULLY,
   FETCHING_USERS_FAILURE,
   SET_NATIONALITY,
+  DISPLAY_MODAL,
+  HIDE_MODAL,
 } from "../actions/usersAction";
 
 const initialState = {
@@ -10,6 +12,7 @@ const initialState = {
   loading: false,
   error: null,
   nationality: "us",
+  allowModalToDisplay: false,
 };
 function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -37,6 +40,16 @@ function userReducer(state = initialState, action) {
         ...state,
         usersList: [],
         nationality: action.payload.nationality,
+      };
+    case DISPLAY_MODAL:
+      return {
+        ...state,
+        allowModalToDisplay: action.payload,
+      };
+    case HIDE_MODAL:
+      return {
+        ...state,
+        allowModalToDisplay: action.payload,
       };
     default:
       return state;
