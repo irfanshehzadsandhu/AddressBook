@@ -1,4 +1,5 @@
-import { USERS_LIBRARY_URL } from "react-native-dotenv";
+import { fetchUsersFromEndPoint } from "../../services/user.js";
+import regeneratorRuntime from "regenerator-runtime";
 export const FETCHING_USERS_BEGIN = "FETCHING_USERS_BEGIN";
 export const FETCHED_USERS_SUCCESSFULLY = "FETCHED_USERS_SUCCESSFULLY";
 export const FETCHING_USERS_FAILURE = "FETCHING_USERS_FAILURE";
@@ -36,22 +37,13 @@ export const hideModal = () => ({
 });
 
 export function fetchUsers(page, offset, nationality) {
-  return (dispatch) => {
-    console.log(USERS_LIBRARY_URL);
-    return fetch(
-      USERS_LIBRARY_URL +
-        "/?nat=" +
-        nationality +
-        "&&page=" +
-        page +
-        "&results=" +
-        offset
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        dispatch(fetchedUsersSuccessfully(json.results));
-        return json.results;
-      })
-      .catch((error) => dispatch(fetchingUsersFailure(error)));
+  return async (dispatch) => {
+    try {
+      const results = await fetchUsersFromEndPoint(page, offset, nationality);
+      dispatch(fetchedUsersSuccessfully(results));
+      return results;
+    } catch (error) {
+      dispatch(fetchingUsersFailure(error));
+    }
   };
 }
