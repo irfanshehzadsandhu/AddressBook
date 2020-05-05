@@ -5,14 +5,16 @@ import {
   SET_NATIONALITY,
   DISPLAY_MODAL,
   HIDE_MODAL,
-} from "../actions/usersAction";
+} from "../Actions/usersAction";
 
 const initialState = {
   usersList: [],
   loading: false,
   error: null,
   nationality: "us",
-  allowModalToDisplay: false,
+  page: 1,
+  offset: 30,
+  selectedUser: null,
 };
 function userReducer(state = initialState, action) {
   switch (action.type) {

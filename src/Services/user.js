@@ -1,4 +1,4 @@
-import usersLibrary from "../config";
+import usersLibrary from "../Config";
 export async function fetchUsersFromEndPoint(page, offset, nationality) {
   const res = await fetch(
     usersLibrary.libraryEndPoint +

@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, Modal, closeButton } from "react-bootstrap";
 
 export default class UserModal extends React.Component {
   render() {

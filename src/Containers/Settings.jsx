@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setNationality } from "../redux/actions/usersAction";
+import { setNationality } from "../Redux/Actions/usersAction";
 
 class Settings extends React.Component {
   constructor() {
