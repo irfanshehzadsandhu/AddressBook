@@ -1,8 +1,7 @@
-import { USERS_LIBRARY_URL } from "react-native-dotenv";
-import regeneratorRuntime from "regenerator-runtime";
+import usersLibrary from "../config";
 export async function fetchUsersFromEndPoint(page, offset, nationality) {
   const res = await fetch(
-    USERS_LIBRARY_URL +
+    usersLibrary.libraryEndPoint +
       "/?nat=" +
       nationality +
       "&&page=" +

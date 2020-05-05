@@ -1,5 +1,5 @@
 import { fetchUsersFromEndPoint } from "../../services/user.js";
-import regeneratorRuntime from "regenerator-runtime";
+//import regeneratorRuntime from "regenerator-runtime";
 export const FETCHING_USERS_BEGIN = "FETCHING_USERS_BEGIN";
 export const FETCHED_USERS_SUCCESSFULLY = "FETCHED_USERS_SUCCESSFULLY";
 export const FETCHING_USERS_FAILURE = "FETCHING_USERS_FAILURE";
