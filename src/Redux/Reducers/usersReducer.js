@@ -5,7 +5,7 @@ import {
   SET_NATIONALITY,
   SELECT_USER,
   UNSELECT_USER,
-} from "../Actions/usersAction";
+} from "../../Constants";
 import { act } from "react-test-renderer";
 
 const initialState = {
