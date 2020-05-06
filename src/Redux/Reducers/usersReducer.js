@@ -5,6 +5,7 @@ import {
   SET_NATIONALITY,
   SELECT_USER,
   UNSELECT_USER,
+  CACHED_USER,
 } from "../../Constants";
 import { act } from "react-test-renderer";
 
@@ -21,6 +22,7 @@ const initialState = {
     perPage: 30,
   },
   selectedUser: null,
+  cachedUsersList: null,
 };
 function userReducer(state = initialState, action) {
   switch (action.type) {
@@ -60,6 +62,11 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         selectedUser: null,
+      };
+    case CACHED_USER:
+      return {
+        ...state,
+        cachedUsersList: action.payload.results,
       };
     default:
       return state;

@@ -12,13 +12,9 @@ import UserModal from "../Components/Modal.jsx";
 
 class Home extends React.Component {
   getUsers() {
-    const { paginationInfo, nationality } = this.props;
+    const { paginationInfo } = this.props;
     if (paginationInfo.hasNextPage) {
-      this.props.fetchUsers(
-        paginationInfo.nextPage,
-        paginationInfo.perPage,
-        nationality
-      );
+      this.props.fetchUsers();
     }
   }
   componentDidMount() {

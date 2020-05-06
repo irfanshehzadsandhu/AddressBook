@@ -6,6 +6,7 @@ import {
   SET_NATIONALITY,
   SELECT_USER,
   UNSELECT_USER,
+  CACHED_USER,
 } from "../../Constants";
 
 export const fetchingUsersBegin = () => ({
@@ -37,18 +38,39 @@ export const unSelectUser = () => ({
   payload: null,
 });
 
-export function fetchUsers(page, offset, nationality) {
-  return async (dispatch) => {
+export const cachedUsers = (results) => ({
+  type: CACHED_USER,
+  payload: { results },
+});
+
+export function fetchUsers() {
+  return async (dispatch, getState) => {
+    let results;
+    const state = getState();
+    const { nationality, paginationInfo } = state.users;
     try {
-      const results = await UserService.fetchUsersFromEndPoint(
-        page,
-        offset,
-        nationality
-      );
+      if (state.cachedUsersList == null) {
+        results = await UserService.fetchUsersFromEndPoint(
+          paginationInfo.nextPage,
+          paginationInfo.perPage,
+          nationality
+        );
+      } else {
+        results = state.cachedUsersList;
+        dispatch(cachedUsers(await getNextUsers(paginationInfo, nationality)));
+      }
       dispatch(fetchedUsersSuccessfully(results));
-      return results;
     } catch (error) {
       dispatch(fetchingUsersFailure(error));
     }
   };
 }
+
+const getNextUsers = async (paginationInfo, nationality) => {
+  const results = await UserService.fetchUsersFromEndPoint(
+    paginationInfo.nextPage + 1,
+    paginationInfo.perPage,
+    nationality
+  );
+  return results;
+};
