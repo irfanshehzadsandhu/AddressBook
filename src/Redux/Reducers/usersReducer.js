@@ -3,17 +3,21 @@ import {
   FETCHED_USERS_SUCCESSFULLY,
   FETCHING_USERS_FAILURE,
   SET_NATIONALITY,
-  DISPLAY_MODAL,
-  HIDE_MODAL,
 } from "../Actions/usersAction";
+import { act } from "react-test-renderer";
 
 const initialState = {
   usersList: [],
   loading: false,
   error: null,
   nationality: "us",
-  page: 1,
-  offset: 30,
+  paginationInfo: {
+    currentPage: 0,
+    nextPage: 1,
+    hasNextPage: true,
+    hasPrevPage: false,
+    perPage: 30,
+  },
   selectedUser: null,
 };
 function userReducer(state = initialState, action) {
@@ -25,10 +29,12 @@ function userReducer(state = initialState, action) {
         error: null,
       };
     case FETCHED_USERS_SUCCESSFULLY:
+      let paginationInfo = action.payload.results.paginationInfo;
       return {
         ...state,
+        paginationInfo,
         loading: false,
-        usersList: state.usersList.concat(action.payload.users),
+        usersList: state.usersList.concat(action.payload.results.data),
       };
     case FETCHING_USERS_FAILURE:
       return {
@@ -42,16 +48,6 @@ function userReducer(state = initialState, action) {
         ...state,
         usersList: [],
         nationality: action.payload.nationality,
-      };
-    case DISPLAY_MODAL:
-      return {
-        ...state,
-        allowModalToDisplay: action.payload,
-      };
-    case HIDE_MODAL:
-      return {
-        ...state,
-        allowModalToDisplay: action.payload,
       };
     default:
       return state;

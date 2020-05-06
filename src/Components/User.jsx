@@ -6,11 +6,9 @@ export default class User extends React.Component {
       <>
         <Row>
           <Col span={6}>
-            <img src={this.props.user.picture.large} />
+            <img src={this.props.user.image} />
           </Col>
-          <Col span={6}>
-            {this.props.user.name.first + " " + this.props.user.name.last}
-          </Col>
+          <Col span={6}>{this.props.user.fullName()}</Col>
           <Col span={6}>{this.props.user.email}</Col>
           <Col span={6}>Details</Col>
         </Row>

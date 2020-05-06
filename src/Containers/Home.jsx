@@ -8,46 +8,41 @@ import UserModal from "../Components/Modal.jsx";
 
 class Home extends React.Component {
   getUsers() {
-    const { page, offset, nationality } = this.props;
-    this.props.fetchingUsersBegin();
-    this.props.fetchUsers(page, offset, nationality);
+    const { paginationInfo, nationality } = this.props;
+    if (paginationInfo.hasNextPage) {
+      this.props.fetchUsers(
+        paginationInfo.nextPage,
+        paginationInfo.perPage,
+        nationality
+      );
+    }
   }
   componentDidMount() {
+    this.props.fetchingUsersBegin();
     this.getUsers();
-    window.addEventListener("scroll", this.handleScroll);
+    this.handleScrollToBottom();
   }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
 
-  handleScroll() {
-    const windowHeight =
-      "innerHeight" in window
-        ? window.innerHeight
-        : document.documentElement.offsetHeight;
-    const body = document.body;
-    const html = document.documentElement;
-    const docHeight = Math.max(
-      body.scrollHeight,
-      body.offsetHeight,
-      html.clientHeight,
-      html.scrollHeight,
-      html.offsetHeight
-    );
-    const windowBottom = windowHeight + window.pageYOffset;
-    if (windowBottom >= docHeight) {
-      const { loading, fetchUsers } = this.props;
-      if (loading == false) {
+  handleScrollToBottom() {
+    const { paginationInfo, loading } = this.props;
+    window.onscroll = async () => {
+      if (loading || !paginationInfo.hasNextPage) return;
+      if (
+        window.innerHeight + document.documentElement.scrollTop ===
+        document.documentElement.scrollHeight
+      ) {
+        console.log("loading more data");
         this.getUsers();
       }
-    } else {
-      console.log("Reaching bottom");
-    }
+    };
   }
 
   render() {
-    const { error, loading, usersList } = this.props;
+    const { error, loading, usersList, paginationInfo } = this.props;
 
     if (error) {
       return <div>Error! {error.message}</div>;
@@ -71,6 +66,7 @@ class Home extends React.Component {
         {usersList.map((user, index) => {
           return <User key={index} user={user} />;
         })}
+        {paginationInfo.hasNextPage == false ? <div>No more users</div> : ""}
       </>
     );
   }
@@ -85,8 +81,7 @@ function mapStateToProps(state) {
     loading: state.users.loading,
     error: state.users.error,
     nationality: state.users.nationality,
-    page: state.users.page,
-    offset: state.users.offset,
+    paginationInfo: state.users.paginationInfo,
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
