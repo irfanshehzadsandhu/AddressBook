@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import { Row, Col } from "antd";
+import UserEntity from "../Entities/user.js"
 export default class User extends React.Component {
   render() {
     return (
@@ -22,6 +23,6 @@ export default class User extends React.Component {
   }
 }
 User.propTypes = {
-  user: PropTypes.object.isRequired,
+  user: PropTypes.instanceOf(UserEntity).isRequired,
   onClick: PropTypes.func.isRequired,
 }

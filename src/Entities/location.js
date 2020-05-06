@@ -7,19 +7,7 @@ export default class Location {
     this.country = country;
   }
   address() {
-    return (
-      this.street.number +
-      " ," +
-      this.street.name +
-      " " +
-      this.city +
-      " " +
-      this.state +
-      " " +
-      this.postcode +
-      " " +
-      this.country
-    );
+    return `${this.street.number} ,${this.street.name} ${this.city} ${this.state} ${this.postcode} ${this.country}`;
   }
   static createLocFromObj(obj) {
     return new Location(

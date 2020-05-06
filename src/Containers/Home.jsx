@@ -71,7 +71,7 @@ class Home extends React.Component {
         {usersList.map((user, index) => {
           return <User key={index} user={user} onClick={selectUser} />;
         })}
-        {paginationInfo.hasNextPage == false ? <div>No more users</div> : null}
+        {paginationInfo.hasNextPage == false ? <div>No more users</div> : ""}
       </>
     );
   }

@@ -22,7 +22,7 @@ const initialState = {
     perPage: 30,
   },
   selectedUser: null,
-  cachedUsersList: null,
+  cachedUsersList: [],
 };
 function userReducer(state = initialState, action) {
   switch (action.type) {
