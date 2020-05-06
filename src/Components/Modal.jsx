@@ -6,7 +6,7 @@ export default class UserModal extends React.Component {
     return (
       <div>
         <Modal
-          title="Basic Modal"
+          title="Postal Address"
           visible={true}
           onCancel={this.props.unSelectUser}
           onOk={this.props.unSelectUser}

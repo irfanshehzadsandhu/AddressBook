@@ -1,7 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
 import "../../assets/stylesheets/Home.css";
-import { Row, Col } from "antd";
 import {
   fetchUsers,
   fetchingUsersBegin,
