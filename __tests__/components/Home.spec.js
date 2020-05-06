@@ -12,7 +12,21 @@ describe("My Connected React-Redux Component", () => {
   let component;
   beforeEach(() => {
     store = mockStore({
-      users: { usersList: [], loading: false, error: null, nationality: "us" },
+      users: {
+        usersList: [],
+        loading: false,
+        error: null,
+        nationality: "us",
+        paginationInfo: {
+          currentPage: 0,
+          nextPage: 1,
+          hasNextPage: true,
+          hasPrevPage: false,
+          perPage: 30,
+        },
+        selectedUser: null,
+        cachedUsersList: [],
+      },
     });
     store.dispatch = jest.fn();
     component = renderer.create(
