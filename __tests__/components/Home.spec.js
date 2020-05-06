@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import renderer from "react-test-renderer";
 import configureStore from "redux-mock-store";
 
-import Home from "../../components/Home.jsx";
+import Home from "../../src/Containers/Home.jsx";
 
 const mockStore = configureStore([]);
 
