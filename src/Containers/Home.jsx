@@ -2,7 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import "../../assets/stylesheets/Home.css";
 import { Row, Col } from "antd";
-import { fetchUsers, fetchingUsersBegin } from "../Redux/Actions/usersAction";
+import {
+  fetchUsers,
+  fetchingUsersBegin,
+  selectUser,
+  unSelectUser,
+} from "../Redux/Actions/usersAction";
 import User from "../Components/User.jsx";
 import UserModal from "../Components/Modal.jsx";
 
@@ -42,8 +47,16 @@ class Home extends React.Component {
   }
 
   render() {
-    const { error, loading, usersList, paginationInfo } = this.props;
-
+    const {
+      error,
+      loading,
+      usersList,
+      paginationInfo,
+      selectUser,
+      unSelectUser,
+      selectedUser,
+    } = this.props;
+    console.log("****************", selectedUser);
     if (error) {
       return <div>Error! {error.message}</div>;
     }
@@ -57,6 +70,10 @@ class Home extends React.Component {
     }
     return (
       <>
+        {selectedUser !== null ? (
+          <UserModal selectedUser={selectedUser} unSelectUser={unSelectUser} />
+        ) : null}
+
         <Row>
           <Col span={6}>Avatar</Col>
           <Col span={6}>Name</Col>
@@ -64,9 +81,9 @@ class Home extends React.Component {
           <Col span={6}>Details</Col>
         </Row>
         {usersList.map((user, index) => {
-          return <User key={index} user={user} />;
+          return <User key={index} user={user} onUserClick={selectUser} />;
         })}
-        {paginationInfo.hasNextPage == false ? <div>No more users</div> : ""}
+        {paginationInfo.hasNextPage == false ? <div>No more users</div> : null}
       </>
     );
   }
@@ -74,6 +91,8 @@ class Home extends React.Component {
 const mapDispatchToProps = {
   fetchUsers,
   fetchingUsersBegin,
+  selectUser,
+  unSelectUser,
 };
 function mapStateToProps(state) {
   return {
@@ -81,6 +100,7 @@ function mapStateToProps(state) {
     loading: state.users.loading,
     error: state.users.error,
     nationality: state.users.nationality,
+    selectedUser: state.users.selectedUser,
     paginationInfo: state.users.paginationInfo,
   };
 }

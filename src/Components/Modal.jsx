@@ -1,50 +1,22 @@
 import React from "react";
+import { Modal, Row, Col } from "antd";
 
 export default class UserModal extends React.Component {
   render() {
+    console.log(this.props);
     return (
-      <>
+      <div>
         <Modal
-          show={this.props.show}
-          onHide={this.props.onHide}
-          animation={false}
+          title="Basic Modal"
+          visible={true}
+          onCancel={this.props.unSelectUser}
+          onOk={this.props.unSelectUser}
         >
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <div className="row">
-              <div className="col-sm">Street Number: </div>
-              <div className="col-sm">{this.props.streetNumber}</div>
-            </div>
-            <div className="row">
-              <div className="col-sm">Street Name: </div>
-              <div className="col-sm">{this.props.streetName}</div>
-            </div>
-            <div className="row">
-              <div className="col-sm">City: </div>
-              <div className="col-sm">{this.props.city}</div>
-            </div>
-            <div className="row">
-              <div className="col-sm">State: </div>
-              <div className="col-sm">{this.props.userAddressState}</div>
-            </div>
-            <div className="row">
-              <div className="col-sm">Country: </div>
-              <div className="col-sm">{this.props.country}</div>
-            </div>
-            <div className="row">
-              <div className="col-sm">Postcode: </div>
-              <div className="col-sm">{this.props.postCode}</div>
-            </div>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={this.props.onHide}>
-              Close
-            </Button>
-          </Modal.Footer>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
         </Modal>
-      </>
+      </div>
     );
   }
 }

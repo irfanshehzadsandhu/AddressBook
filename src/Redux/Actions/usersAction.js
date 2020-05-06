@@ -3,8 +3,8 @@ export const FETCHING_USERS_BEGIN = "FETCHING_USERS_BEGIN";
 export const FETCHED_USERS_SUCCESSFULLY = "FETCHED_USERS_SUCCESSFULLY";
 export const FETCHING_USERS_FAILURE = "FETCHING_USERS_FAILURE";
 export const SET_NATIONALITY = "SET_NATIONALITY";
-export const DISPLAY_MODAL = "DISPLAY_MODAL";
-export const HIDE_MODAL = "HIDE_MODAL";
+export const SELECT_USER = "SELECT_USER";
+export const UNSELECT_USER = "UNSELECT_USER";
 
 export const fetchingUsersBegin = () => ({
   type: FETCHING_USERS_BEGIN,
@@ -25,14 +25,14 @@ export const setNationality = (nationality) => ({
   payload: { nationality },
 });
 
-export const displayModal = () => ({
-  type: DISPLAY_MODAL,
-  payload: true,
+export const selectUser = (user) => ({
+  type: SELECT_USER,
+  payload: user,
 });
 
-export const hideModal = () => ({
-  type: HIDE_MODAL,
-  payload: false,
+export const unSelectUser = () => ({
+  type: UNSELECT_USER,
+  payload: null,
 });
 
 export function fetchUsers(page, offset, nationality) {

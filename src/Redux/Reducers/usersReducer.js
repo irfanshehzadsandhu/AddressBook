@@ -3,6 +3,8 @@ import {
   FETCHED_USERS_SUCCESSFULLY,
   FETCHING_USERS_FAILURE,
   SET_NATIONALITY,
+  SELECT_USER,
+  UNSELECT_USER,
 } from "../Actions/usersAction";
 import { act } from "react-test-renderer";
 
@@ -48,6 +50,16 @@ function userReducer(state = initialState, action) {
         ...state,
         usersList: [],
         nationality: action.payload.nationality,
+      };
+    case SELECT_USER:
+      return {
+        ...state,
+        selectedUser: action.payload.user,
+      };
+    case UNSELECT_USER:
+      return {
+        ...state,
+        selectedUser: null,
       };
     default:
       return state;
