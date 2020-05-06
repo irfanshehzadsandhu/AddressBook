@@ -56,7 +56,6 @@ class Home extends React.Component {
       unSelectUser,
       selectedUser,
     } = this.props;
-    console.log("****************", selectedUser);
     if (error) {
       return <div>Error! {error.message}</div>;
     }
@@ -71,7 +70,7 @@ class Home extends React.Component {
     return (
       <>
         {selectedUser !== null ? (
-          <UserModal selectedUser={selectedUser} unSelectUser={unSelectUser} />
+          <UserModal user={selectedUser} unSelectUser={unSelectUser} />
         ) : null}
 
         <Row>
@@ -81,7 +80,7 @@ class Home extends React.Component {
           <Col span={6}>Details</Col>
         </Row>
         {usersList.map((user, index) => {
-          return <User key={index} user={user} onUserClick={selectUser} />;
+          return <User key={index} user={user} onClick={selectUser} />;
         })}
         {paginationInfo.hasNextPage == false ? <div>No more users</div> : null}
       </>

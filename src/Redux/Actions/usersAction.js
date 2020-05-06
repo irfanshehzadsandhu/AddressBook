@@ -27,7 +27,7 @@ export const setNationality = (nationality) => ({
 
 export const selectUser = (user) => ({
   type: SELECT_USER,
-  payload: user,
+  payload: { user },
 });
 
 export const unSelectUser = () => ({

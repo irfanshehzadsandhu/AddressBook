@@ -11,10 +11,7 @@ export default class User extends React.Component {
           <Col span={6}>{this.props.user.fullName()}</Col>
           <Col span={6}>{this.props.user.email}</Col>
           <Col span={6}>
-            <a
-              href="##"
-              onClick={() => this.props.onUserClick(this.props.user)}
-            >
+            <a href="##" onClick={() => this.props.onClick(this.props.user)}>
               Details
             </a>
           </Col>

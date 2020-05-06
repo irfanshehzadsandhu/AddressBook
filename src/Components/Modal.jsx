@@ -3,7 +3,6 @@ import { Modal, Row, Col } from "antd";
 
 export default class UserModal extends React.Component {
   render() {
-    console.log(this.props);
     return (
       <div>
         <Modal
@@ -12,9 +11,16 @@ export default class UserModal extends React.Component {
           onCancel={this.props.unSelectUser}
           onOk={this.props.unSelectUser}
         >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <Row>
+            <Col span={6}>
+              {this.props.user.location.street.number +
+                "," +
+                this.props.user.location.street.name}
+            </Col>
+            <Col span={6}>{this.props.user.location.city}</Col>
+            <Col span={6}>{this.props.user.location.state}</Col>
+            <Col span={6}>{this.props.user.location.postcode}</Col>
+          </Row>
         </Modal>
       </div>
     );
