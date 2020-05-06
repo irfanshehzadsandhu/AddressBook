@@ -5,3 +5,4 @@ export const SET_NATIONALITY = "SET_NATIONALITY";
 export const SELECT_USER = "SELECT_USER";
 export const UNSELECT_USER = "UNSELECT_USER";
 export const CACHED_USER = "CACHED_USER";
+export const TOTAL_RECORDS = 200;

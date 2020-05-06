@@ -2,7 +2,7 @@ import usersLibrary from "../Config";
 import PaginatedConfig from "../Utils/paginationConfig.js";
 import PaginatedData from "../Utils/paginatedData.js";
 import User from "../Entities/user.js";
-
+import { TOTAL_RECORDS } from "../Constants";
 export class UserService {
   static async fetchUsersFromEndPoint(page, offset, nationality) {
     const fields = "id,name,email,login,picture,phone,cell,location";
@@ -20,7 +20,7 @@ export class UserService {
     const json = await res.json();
     const paginatedData = new PaginatedData(
       new PaginatedConfig(page, offset),
-      200
+      TOTAL_RECORDS
     );
     json.results.map((result) => {
       paginatedData.addItem(User.createFromObj(result));
