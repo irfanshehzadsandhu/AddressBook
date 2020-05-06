@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Row, Col } from "antd";
-
+import PropTypes from 'prop-types';
 export default class UserModal extends React.Component {
   render() {
     return (
@@ -20,4 +20,8 @@ export default class UserModal extends React.Component {
       </div>
     );
   }
+}
+UserModal.propTypes = {
+  user: PropTypes.object.isRequired,
+  unSelectUser: PropTypes.func.isRequired,
 }

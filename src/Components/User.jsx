@@ -1,5 +1,6 @@
 import React from "react";
-import { Row, Col, Icon } from "antd";
+import PropTypes from 'prop-types';
+import { Row, Col } from "antd";
 export default class User extends React.Component {
   render() {
     return (
@@ -19,4 +20,8 @@ export default class User extends React.Component {
       </>
     );
   }
+}
+User.propTypes = {
+  user: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
