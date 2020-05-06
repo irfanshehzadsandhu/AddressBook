@@ -73,12 +73,6 @@ class Home extends React.Component {
           <UserModal user={selectedUser} unSelectUser={unSelectUser} />
         ) : null}
 
-        <Row>
-          <Col span={6}>Avatar</Col>
-          <Col span={6}>Name</Col>
-          <Col span={6}>Email</Col>
-          <Col span={6}>Details</Col>
-        </Row>
         {usersList.map((user, index) => {
           return <User key={index} user={user} onClick={selectUser} />;
         })}

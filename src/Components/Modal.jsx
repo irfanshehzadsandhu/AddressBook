@@ -12,14 +12,9 @@ export default class UserModal extends React.Component {
           onOk={this.props.unSelectUser}
         >
           <Row>
-            <Col span={6}>
-              {this.props.user.location.street.number +
-                "," +
-                this.props.user.location.street.name}
+            <Col span={12}>
+              <p>{this.props.user.location.address()}</p>
             </Col>
-            <Col span={6}>{this.props.user.location.city}</Col>
-            <Col span={6}>{this.props.user.location.state}</Col>
-            <Col span={6}>{this.props.user.location.postcode}</Col>
           </Row>
         </Modal>
       </div>
