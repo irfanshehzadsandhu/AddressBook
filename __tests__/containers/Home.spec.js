@@ -3,8 +3,10 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
-
+import sinon from "sinon";
 import Home from "../../src/Containers/Home.jsx";
+import { UserService } from "../../src/Services/user.js";
+import UserFactory from "../../tests/factories/user.js";
 
 const mockStore = configureStore([thunk]);
 
@@ -36,6 +38,16 @@ describe("My Connected React-Redux Component", () => {
         },
         selectedUser: null,
         cachedUsersList: [],
+      },
+    });
+    sinon.stub(UserService, "fetchUsersFromEndPoint").returns({
+      data: [UserFactory.createUser(), UserFactory.createUser()],
+      paginationInfo: {
+        currentPage: 1,
+        nextPage: 2,
+        hasNextPage: true,
+        hasPrevPage: false,
+        perPage: 30,
       },
     });
     component = mount(
