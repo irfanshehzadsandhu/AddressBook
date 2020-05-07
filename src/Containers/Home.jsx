@@ -23,9 +23,6 @@ class Home extends React.Component {
     this.handleScrollToBottom();
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
 
   handleScrollToBottom() {
     const { paginationInfo, loading } = this.props;

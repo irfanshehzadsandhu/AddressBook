@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My Connected React-Redux Component should render with given state from Redux store 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <Connect(Home)>
+    <Home
+      error={null}
+      fetchUsers={[Function]}
+      fetchingUsersBegin={[Function]}
+      loading={false}
+      nationality="us"
+      paginationInfo={
+        Object {
+          "currentPage": 0,
+          "hasNextPage": true,
+          "hasPrevPage": false,
+          "nextPage": 1,
+          "perPage": 30,
+        }
+      }
+      selectUser={[Function]}
+      selectedUser={null}
+      unSelectUser={[Function]}
+      usersList={Array []}
+    />
+  </Connect(Home)>
+</Provider>
+`;

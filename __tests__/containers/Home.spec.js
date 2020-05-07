@@ -1,16 +1,26 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { shallow } from "enzyme";
+import thunk from "redux-thunk";
+import { mount } from "enzyme";
 import configureStore from "redux-mock-store";
 
 import Home from "../../src/Containers/Home.jsx";
 
-const mockStore = configureStore([]);
+const mockStore = configureStore([thunk]);
 
 describe("My Connected React-Redux Component", () => {
   let store;
   let component;
   beforeEach(() => {
+    Object.defineProperty(window, "matchMedia", {
+      value: () => {
+        return {
+          matches: false,
+          addListener: () => {},
+          removeListener: () => {},
+        };
+      },
+    });
     store = mockStore({
       users: {
         usersList: [],
@@ -28,7 +38,7 @@ describe("My Connected React-Redux Component", () => {
         cachedUsersList: [],
       },
     });
-    component = shallow(
+    component = mount(
       <Provider store={store}>
         <Home />
       </Provider>
