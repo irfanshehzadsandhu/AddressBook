@@ -1,6 +1,6 @@
 import React from "react";
 import { Provider } from "react-redux";
-import renderer from "react-test-renderer";
+import { shallow } from "enzyme";
 import configureStore from "redux-mock-store";
 
 import Home from "../../src/Containers/Home.jsx";
@@ -28,8 +28,7 @@ describe("My Connected React-Redux Component", () => {
         cachedUsersList: [],
       },
     });
-    store.dispatch = jest.fn();
-    component = renderer.create(
+    component = shallow(
       <Provider store={store}>
         <Home />
       </Provider>
@@ -37,6 +36,6 @@ describe("My Connected React-Redux Component", () => {
   });
 
   it("should render with given state from Redux store", () => {
-    expect(component.toJSON()).toMatchSnapshot();
+    expect(component).toMatchSnapshot();
   });
 });
